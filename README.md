@@ -3,9 +3,8 @@
 ![Python](https://img.shields.io/badge/Python-3.x-emerald)
 ![Django](https://img.shields.io/badge/Framework-Django-092e20)
 ![TailwindCSS](https://img.shields.io/badge/UI-Tailwind_CSS-38bdf8)
-![Status](https://img.shields.io/badge/Security-Ethical_Hacking_UI-black)
 
-**NetManager** is a lightweight, high-performance network device management system. Built with a "Cyber-Noir" aesthetic, it allows network administrators to track assets, monitor live/dead status, and resolve hostnames through a terminal-inspired interface.
+**NetManager** is a lightweight, high-performance network device management system. Built with a "Cyber-Noir" aesthetic, it allows network administrators to track assets, monitor online/offline status, and resolve hostnames through a terminal-inspired interface.
 
 ---
 
@@ -39,7 +38,8 @@ cd netmng
 - pip install -r requirements.txt
 - python manage.py migrate
 
-### Project Structure
+## Project Structure
+```
 .
 ├── netmng/                 # Project Configuration Root
 │   ├── __init__.py         # Marks directory as a Python package
@@ -61,3 +61,4 @@ cd netmng
 ├── db.sqlite3              # Local Database Instance (Keep out of GitHub)
 ├── manage.py               # Django Command-Line Utility (Execution Entry)
 └── requirements.txt        # Manifest of Python dependencies
+```
