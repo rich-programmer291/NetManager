@@ -65,7 +65,8 @@ cd netmng
 
 ## Screenshots
 
-<img width="1247" height="444" alt="image" src="https://github.com/user-attachments/assets/718c911b-d9ae-4d1c-a052-04c2a4df73c4" /> <br/>
+![Screenshot_22-3-2026_19277_127 0 0 1](https://github.com/user-attachments/assets/7cb51f30-c04c-4328-bff5-a74f609851d3)
+ <br/>
 ![Screenshot_22-3-2026_192735_127 0 0 1](https://github.com/user-attachments/assets/d55c706f-5773-4f25-971d-9dec9e80e541)
 
 
