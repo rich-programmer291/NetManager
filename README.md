@@ -1,4 +1,4 @@
-# 🌐 NetManager: Intelligence Suite
+# 🌐 NetManager: Network Monitoring Dashboard
 
 ![Python](https://img.shields.io/badge/Python-3.x-emerald)
 ![Django](https://img.shields.io/badge/Framework-Django-092e20)
