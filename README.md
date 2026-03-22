@@ -32,8 +32,8 @@
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/rich-programmer291/netmanager.git](https://github.com/YOUR_USERNAME/NetManager.git)
-cd NetManager
+git clone https://github.com/rich-programmer291/NetManager.git
+cd netmng
 ```
 ### 2. Run Locally
 - pip install -r requirements.txt
