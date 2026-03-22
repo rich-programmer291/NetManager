@@ -1,0 +1,63 @@
+{% extends 'devices/base.html' %}
+
+{% block content %}
+<div class="mb-8 font-sans">
+    <h2 class="text-3xl font-black mb-6 text-slate-800 dark:text-white uppercase tracking-tighter">
+        Network <span class="text-emerald-500 italic">Intelligence</span>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div class="bg-white dark:bg-zinc-900 border-l-4 border-emerald-500 p-6 rounded-r-2xl shadow-sm group hover:bg-emerald-50 dark:hover:bg-emerald-950/20 transition-all">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Active Nodes</p>
+            <h3 class="text-4xl font-black text-slate-800 dark:text-white mt-1 font-mono tracking-tighter tabular-nums">{{ online_count }}</h3>
+        </div>
+        <div class="bg-white dark:bg-zinc-900 border-l-4 border-red-500 p-6 rounded-r-2xl shadow-sm group hover:bg-red-50 dark:hover:bg-red-950/20 transition-all">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Disconnected</p>
+            <h3 class="text-4xl font-black text-slate-800 dark:text-white mt-1 font-mono tracking-tighter tabular-nums">{{ offline_count }}</h3>
+        </div>
+    </div>
+
+    <div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl">
+        <table class="min-w-full bg-white dark:bg-zinc-900">
+            <thead class="bg-slate-900 dark:bg-black text-slate-500 uppercase text-[11px] tracking-widest">
+                <tr>
+                    <th class="py-5 px-6 text-left font-black">Node_Identity</th>
+                    <th class="py-5 px-6 text-left font-black">IP_Address</th>
+                    <th class="py-5 px-6 text-left font-black">Link_Status</th>
+                    <th class="py-5 px-6 text-center font-black">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="text-slate-700 dark:text-slate-300 divide-y divide-slate-100 dark:divide-slate-800 font-mono text-sm">
+                {% for device, status in device_status %}
+                <tr class="hover:bg-slate-50 dark:hover:bg-emerald-500/5 transition-all">
+                    <td class="py-4 px-6 font-bold text-slate-900 dark:text-emerald-50">
+                        <span class="text-emerald-500/50 mr-1">$</span>{{ device.name }}
+                    </td>
+                    
+                    <td class="py-4 px-6 text-emerald-600 dark:text-emerald-400/80">
+                        {{ device.ip_address }}
+                    </td>
+                    
+                    <td class="py-4 px-6">
+                        {% if status %}
+                        <span class="inline-flex items-center px-2 py-0.5 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 text-sm  uppercase">
+                            ONLINE 
+                        </span>
+                        {% else %}
+                        <span class="inline-flex items-center px-2 py-0.5 rounded border border-red-500/30 bg-red-500/10 text-red-500 text-sm  uppercase ">
+                            OFFLINE 
+                        </span>
+                        {% endif %}
+                    </td>
+                    
+                    <td class="py-4 px-6 flex justify-center gap-6">
+                        <a href="/edit/{{ device.id }}/" class="opacity-60 hover:opacity-100 hover:scale-110 transition-all" title="Edit Params">✏️</a>
+                        <a href="/delete/{{ device.id }}/" onclick="return confirm('Confirm Deletion?')" class="opacity-60 hover:opacity-100 hover:scale-110 transition-all" title="Purge Record">🗑️</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

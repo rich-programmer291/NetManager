@@ -1,0 +1,68 @@
+{% extends 'devices/base.html' %}
+
+{% block content %}
+<div class="flex justify-center mt-12">
+    <div class="bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-slate-200 dark:border-slate-800">
+        <h2 class="text-2xl font-black mb-2 text-center text-slate-800 dark:text-white uppercase tracking-tighter">
+            IP <span class="text-emerald-500">Lookup</span>
+        </h2>
+        <p class="text-center text-slate-400 text-xs mb-8 uppercase tracking-widest">Resolve Network Hostnames</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="relative group">
+                <input name="ip" placeholder="Enter Target IP..." 
+                    class="w-full p-4 pl-12 bg-slate-50 dark:bg-black border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none dark:text-white transition font-mono text-lg mb-4">
+                <span class="absolute left-4 top-4 opacity-30 group-focus-within:opacity-100 transition">🔍</span>
+            </div>
+
+            <button class="bg-gradient-to-br from-slate-800 to-black hover:from-black hover:to-slate-800 text-white w-full py-4 rounded-xl font-black tracking-widest shadow-lg transition-all active:scale-95 border border-slate-700 uppercase text-sm">
+                Initialize Scan
+            </button>
+        </form>
+
+        {% if hostname %}
+        <div class="mt-8 p-5 bg-slate-900 rounded-xl border border-slate-700 shadow-inner relative group/result">
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Query Result</span>
+                
+                <button onclick="copyToClipboard('{{ hostname }}', this)" class="text-slate-500 hover:text-emerald-400 transition-colors text-xs flex items-center gap-1">
+                    <span id="copy-icon">📋</span>
+                    <span id="copy-text" class="text-[9px] uppercase tracking-tighter">Copy</span>
+                </button>
+            </div>
+            
+            <p class="text-xs text-emerald-500/70 font-mono mb-1">> hostname_found:</p>
+            <p id="hostname-output" class="font-mono text-xl text-white break-all">{{ hostname }}</p>
+            
+            <div class="absolute bottom-2 right-2 flex gap-1 opacity-20">
+                <div class="w-1 h-3 bg-emerald-500 animate-pulse"></div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    function copyToClipboard(text, btn) {
+        navigator.clipboard.writeText(text).then(() => {
+            const icon = btn.querySelector('#copy-icon');
+            const label = btn.querySelector('#copy-text');
+            
+            // Visual feedback
+            const originalIcon = icon.innerText;
+            const originalText = label.innerText;
+            
+            icon.innerText = '✅';
+            label.innerText = 'Copied';
+            label.classList.add('text-emerald-400');
+
+            setTimeout(() => {
+                icon.innerText = originalIcon;
+                label.innerText = originalText;
+                label.classList.remove('text-emerald-400');
+            }, 2000);
+        });
+    }
+</script>
+{% endblock %}
